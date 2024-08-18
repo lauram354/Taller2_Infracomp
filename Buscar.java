@@ -66,6 +66,6 @@ public class Buscar extends Thread{
         while(actual < i){
         }
 
-        System.out.println("El maximo es: " + maximo.getMaximo());
+        System.out.println("\nEl maximo es: " + maximo.getMaximo());
     }
 }
