@@ -45,21 +45,23 @@ public class Buscar extends Thread{
         }
 
         int pasos =  n/i;
-        int extra = i/(n%i);
-        System.out.println("pasos:" + pasos + " extra:" + extra);
+        System.out.println("pasos:" + pasos);
         int y = 0;
         
-        for (int k = 0; k < n; k= k + pasos + extra){
+        for (int k = 0; k < n; k= k + pasos){
             y = y +1;
             if (y == i){
                 new Buscar(vector, k, n).start();
             }
             else{
-                new Buscar(vector, k, k + pasos + extra).start();
+                new Buscar(vector, k, k + pasos).start();
+                
             }
         }
+
         while(actual < i){
         }
+
         System.out.println("El maximo es: " + maximo.getMaximo());
     }
 }
