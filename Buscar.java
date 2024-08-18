@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/*LABORATORIO 2 - INFRAESTRUCTURA COMPUTACIONAL */
+/*Grupo 11: Laura Murcia, Monica Gonzalez, Camilo Quimbay */
+
 public class Buscar extends Thread{
     private static Maximo maximo = new Maximo();
     private static Vector vector;
@@ -40,12 +43,12 @@ public class Buscar extends Thread{
         Vector vector = new Vector(n);
         Buscar.vector = vector;
         
+        System.out.println("El vector generado se presenta a continuación: ");
         for (int value : vector.getVector()) {
             System.out.print(value + " ");
         }
 
         int pasos =  n/i;
-        System.out.println("pasos:" + pasos);
         int y = 1;
         
         for (int k = 0; y <= i; k= k + pasos){
