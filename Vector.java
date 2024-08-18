@@ -17,4 +17,8 @@ public class Vector {
     public int[] getVector(){
         return vector;
     }
+
+    public int getValue(int position){
+        return vector[position];
+    }
 }

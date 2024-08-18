@@ -3,15 +3,27 @@ import java.util.Scanner;
 public class Buscar extends Thread{
     private static Maximo maximo = new Maximo();
     private static Vector vector;
-    private int id;
+    private static int actual = 0;
+    private int inicio;
+    private int ultimaPos;
 
-    public Buscar(Vector vector, int id){
-        this.id = id;
+    public Buscar(Vector vector, int inicio, int ultimaPos){
+        this.inicio = inicio;
+        this.ultimaPos = ultimaPos;
     }
 
     @Override 
     public void run(){
-        
+        int localMax = 0;
+        for (int j = inicio; j < ultimaPos; j++){
+            if (vector.getValue(j) > localMax){
+                localMax = vector.getValue(j);
+            }
+        }
+        synchronized(maximo){
+            maximo.actualizar(localMax);
+        }
+        actual = actual + 1;
     }
 
     public static void main(String[] args){
@@ -28,13 +40,26 @@ public class Buscar extends Thread{
         Vector vector = new Vector(n);
         Buscar.vector = vector;
         
-        /* 
         for (int value : vector.getVector()) {
             System.out.print(value + " ");
         }
-        */
 
+        int pasos =  n/i;
+        int extra = i/(n%i);
+        System.out.println("pasos:" + pasos + " extra:" + extra);
+        int y = 0;
+        
+        for (int k = 0; k < n; k= k + pasos + extra){
+            y = y +1;
+            if (y == i){
+                new Buscar(vector, k, n).start();
+            }
+            else{
+                new Buscar(vector, k, k + pasos + extra).start();
+            }
+        }
+        while(actual < i){
+        }
+        System.out.println("El maximo es: " + maximo.getMaximo());
     }
-
-    
 }
