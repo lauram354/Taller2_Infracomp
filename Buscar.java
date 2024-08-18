@@ -46,10 +46,10 @@ public class Buscar extends Thread{
 
         int pasos =  n/i;
         System.out.println("pasos:" + pasos);
-        int y = 0;
+        int y = 1;
         
-        for (int k = 0; k < n; k= k + pasos){
-            y = y +1;
+        for (int k = 0; y <= i; k= k + pasos){
+            
             if (y == i){
                 new Buscar(vector, k, n).start();
             }
@@ -57,6 +57,7 @@ public class Buscar extends Thread{
                 new Buscar(vector, k, k + pasos).start();
                 
             }
+            y = y + 1;
         }
 
         while(actual < i){
